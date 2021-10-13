@@ -1,0 +1,14 @@
+<h3>Create new transaction</h3>
+
+<%= form_with model: Transaction.new,:url => url_for(:controller => 'transactions', :action => 'create'), method: :post do|f| %>
+  <%= f.label :description%>
+  <%= f.text_field :description%><br>
+  <%= f.label :transactionType%>
+    <%= f.radio_button :transactionType, 'Deposit' %>Deposit
+    <%= f.radio_button :transactionType, 'Withdrawal' %>Withdrawal <br>
+  <%= f.label :amount%>
+  <%= f.number_field :amount%><br><br>
+  <%= f.hidden_field :user1_id, :value => @user.id %>
+  <%= f.hidden_field :account_id, :value => @accounts.id %>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,19 @@
+
+<% if admin_logged_in? %>
+    <h1>You are Logged In, <%= current_admin_user.username %></h1>
+    <%= button_to "Logout", '/admin/logout', method: :get%>
+    
+<%else%>
+<%= bootstrap_form_with(url: 'admin/login') do |f| %>
+   <%= f.text_field :username %>
+   <%= f.password_field :password %>
+   <%= f.submit "Log in", class: 'btn btn-primary' %>
+<% end %>
+<%if !hasAdminUser%>
+    <%= button_to "Create First Admin", '/admin_users/new', method: :get%>
+<%end%>
+<%end%>
+
+
+
+

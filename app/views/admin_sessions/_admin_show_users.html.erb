@@ -1,0 +1,21 @@
+<div class="usersList">
+  <h2>Site Users</h2>
+  <table class="listing" >
+    <tr class="header">
+      <th>Username</th>
+      <th>Number of Accounts</th>
+      <th > Created at </th>
+    </tr>
+    <% @site_users.each do |user| %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= user.accounts.all.count%></td>
+      <td><%= user.created_at%> </td>
+      <td class="actions">
+      <td><%= button_to 'Delete', {:controller => "user", :action => "delete", :user_id => user.id, :method=>:post}  %></td>
+      </td>
+      <td> <%= button_to "View/Edit", 'panel/user/'+user.id.to_s , :method => "get" %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

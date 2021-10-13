@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      /* Style the header */
+      .header {
+        background-color: #5F9EA0;
+        padding: 20px;
+        text-align: center;
+
+      }
+
+      /* Style the top navigation bar */
+      .topnav {
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      /* Style the topnav links */
+      .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      /* Change color on hover */
+      .topnav a:hover {
+        background-color: #5F9EA0;
+        color: black;
+      }
+
+      /* Create three equal columns that floats next to each other */
+      .column {
+        float: left;
+        width: 33.33%;
+        padding: 15px;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+      @media screen and (max-width:600px) {
+        .column {
+          width: 100%;
+        }
+      }
+      .logout-button{
+        color: #f2f2f2;
+        background-color: #333;
+        width: 100px;
+        height: 30px;
+        margin-left: 480px;
+        margin-top: 10px;
+        border-radius: 8%;
+        text-decoration: none;
+        display: inline-block;
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+
+      .logout-button:hover {
+          background-color: #5F9EA0;
+          color: black;
+        }
+
+</style>
+
+  </head>
+  <body>
+
+    <div class="header">
+      <h1>Welcome, <%=current_user.username %></h1>
+        <p>You can view your current accounts</p>
+    </div>
+
+    <div class="topnav">
+      <a href="#">My profile</a>
+      <a href="#">My statements</a>
+      <a href="#">Make transfer</a>
+      <a href="#">Make deposit</a>
+      <%= button_to "Logout", '/logout', method: :get, :class => "logout-button"%>
+    </div>
+
+    <%accounts = current_user().accounts.all %>
+    <div class="row">
+     <% accounts.each do |acc| %>
+      <div class="column">
+
+        <h2>Account : <%= acc.account_number%></h2>
+        <p>Your balance is:<%= "#{acc.currency}#{acc.amount}"%><br></p>
+        <%= button_to "View Transactions",'visitors' + '/' +  acc.id.to_s + '/' +'transactions', :method => "get" %>
+         <%= button_to "Make Transaction",'visitors' + '/' +  acc.id.to_s + '/' +'new_transaction', :method => "get" %>
+      </div>
+       <%end %>
+    </div>
+
+  </body>
+</html>

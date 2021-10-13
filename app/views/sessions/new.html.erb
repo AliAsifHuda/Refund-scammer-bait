@@ -1,0 +1,24 @@
+<html>
+<head>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+
+   <div style="height: 100%;width: 100%; position: relative;">  
+
+      <%=image_tag('happyCouple.jpg', style: 'width: 100%; alt:Happy couple; left: 0em; top: 0em;') %>
+      <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.25);position:absolute;background-color: white;border-radius: 25px; width:20em;top:4em;left:4em;z-index:11px;text-align:center;">
+         <div style="padding: 3em;">
+            <h3>Welcome to Roadrunner Bank!</h3>
+            <p>Please enter your log-in info below:</p>
+            <%= bootstrap_form_with(url: login_path, scope: :session) do |f| %>
+               <%= f.text_field :username %>
+               <%= f.password_field :password %>
+               <br>
+               <%= f.submit "Log in", class: 'btn btn-primary' %>
+            <% end %>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

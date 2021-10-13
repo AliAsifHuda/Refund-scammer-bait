@@ -1,0 +1,9 @@
+<h1>Admin Panel</h1>
+
+<h2>Welcome to the admin panel  <%= current_admin_user.username %></h2>
+<%= button_to "Logout", '/admin/logout', method: :get%>
+<%= button_to "Create New Admin User", '/admin_users/new', method: :get%>
+<%= button_to "Create New Normal User", new_user_url, method: :get%>
+<%= render 'admin_show_users'%>
+
+

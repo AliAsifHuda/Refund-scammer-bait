@@ -1,0 +1,31 @@
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+  <div style="text-align: center;">
+  <div class="header" style="background-color: #5F9EA0;padding: 20px;text-align: center;">
+    <h1>Create your new transaction!</h1>
+  </div>
+  <br>
+  <% if flash[:notice] %>
+      <div class="alert alert-info"><%= flash[:notice] %></div>
+    <% end %>
+  <div style="padding-left:37.5%;">  
+  <div style="color:white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.25);background-color: #212529;border-radius: 25px; width:20em;z-index:11px;padding: 3em;">
+    
+  <%= bootstrap_form_with model: Transaction.new,:url => '/visitors/'+ params[:account_id] + '/create_transaction', method: :post do|f| %>
+      <!-- <%= f.label :description%> -->
+      <%= f.text_field :description%><br>
+      <!-- <%= f.label :amount%> -->
+      <%= f.number_field :amount%><br>
+      <!-- <%= f.label :destination, 'Transaction Destination Account'%> -->
+      <%= f.text_field :destination%><br><br>
+      <%= f.hidden_field :account_id, :value => params[:account_id] %>
+      <%= f.hidden_field :transactionType, :value => "Withdrawal" %>
+      <%= f.submit %>
+      
+    <% end %>
+  </div>
+  </div>
+  </div>
+</body>

@@ -1,0 +1,10 @@
+<h1>Define a new Site User</h1>
+<%= form_for(@user, url: user_index_url) do |f|%>
+  <%= f.label :username%><br>
+  <%= f.text_field :username%><br>
+  <%= f.label :password%><br>
+  <%= f.password_field :password,:minlength => 6%><br>
+  <%= f.submit %>
+<%end%>
+
+

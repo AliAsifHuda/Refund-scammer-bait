@@ -1,0 +1,28 @@
+
+<h1>Create a new Account</h1>
+
+
+<%= form_with model: Account.new,:url => url_for(:controller => 'accounts', :action => 'create'), method: :post do|f| %>
+  <%= f.label :account_number%>
+  <%= f.text_field :account_number%>
+  <%= f.label :amount%>
+  <%= f.number_field :amount%>
+  <%= f.label :currency %>
+  <%= f.select :currency, [ '£','€','$' ] %>
+  <%= f.hidden_field :user1_id, :value => @user.id %>
+  <%= f.submit %>
+<% end %>
+<h2> <%= @user.username + "'s accounts" %>
+    <%accounts = @user.accounts.all %>
+    <div class="row">
+     <% accounts.each do |acc| %>
+
+      <div class="column">
+        <h2>Account Number : <%= acc.account_number %></h2>
+        <p>Your balance is:<%= "#{acc.currency}#{acc.amount}"%><br></p>
+        <%= button_to "View/Edit", @user.id.to_s + "/" +acc.id.to_s, :method => "get" %>
+        <%= button_to 'Delete',@user.id.to_s + "/" +acc.id.to_s + "/delete" , :method=> "get"  %>
+        <td></td>
+      </div>
+       <%end %>
+    </div>

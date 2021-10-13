@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#admin_user1:
+ # username: AdminTest
+ # password_digest: <%= BCrypt::Password.create("kcl123") %>
+
+#two:
+ # username: MyString
+ # password_digest: MyString
